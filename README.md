@@ -1,4 +1,4 @@
-# powershellscripts
+# Powershell Scripts
 A collection of useful powershell scripts to help make life easier ;) 
 
 ## Scripts
