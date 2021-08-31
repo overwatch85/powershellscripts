@@ -7,6 +7,9 @@ $tcode = Read-Host -Prompt 'Input your parcel tracking code'
 
 Function monitor {
 cls
+echo "Retrieving information for tracking code $tcode every 2 minutes"
+echo ""
+echo ""
 $response = Invoke-RestMethod -Uri "https://www.maltapost.com/TrackAndTraceApi/v1/trackedItems?barcode=$tcode"
 $response.flag
 echo $response.movements
