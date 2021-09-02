@@ -4,16 +4,35 @@
 ##Description: Powershell loop to monitor a tracked item via Maltapost's API every 2 minutes for real-time updates to a parcel's status
 
 $tcode = Read-Host -Prompt 'Input your parcel tracking code'
+$seconds = 120
+
 
 Function monitor {
-cls
-echo "Retrieving information for tracking code $tcode every 2 minutes"
-echo ""
-echo ""
-$response = Invoke-RestMethod -Uri "https://www.maltapost.com/TrackAndTraceApi/v1/trackedItems?barcode=$tcode"
-$response.flag
-echo $response.movements
-}
+  cls
+  echo ""
+  echo ""
+  echo ""
+  echo ""
+  echo ""
+  echo "Retrieving information for tracking code $tcode every 2 minutes"
+  echo ""
+  echo ""
+  echo ""
+  echo ""
+  echo ""
+  $response = Invoke-RestMethod -Uri "https://www.maltapost.com/TrackAndTraceApi/v1/trackedItems?barcode=$tcode"
+  $response.flag
+  echo $response.movements
+  
+  #Progress Bar
+  1..$seconds |
+    ForEach-Object { 
+      $percent = $_ * 100 / $seconds; 
+      Write-Progress -Activity Break -Status "$($seconds - $_) seconds remaining..." -PercentComplete $percent; 
+      Start-Sleep -Seconds 1
+      }
+  
+  }
 
-while (1) {monitor; sleep 120}
+while (1) {monitor; sleep $seconds}
 
