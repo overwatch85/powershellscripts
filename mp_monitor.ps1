@@ -4,7 +4,8 @@
 ##Description: Powershell loop to monitor a tracked item via Maltapost's API every 2 minutes for real-time updates to a parcel's status
 
 $tcode = Read-Host -Prompt 'Input your parcel tracking code'
-$seconds = 120
+$apiseconds = 30
+$progseconds = 60
 $Host.PrivateData.ProgressBackgroundColor='Green'
 $Host.PrivateData.ProgressForegroundColor='Black'
 
@@ -22,14 +23,14 @@ Function monitor {
   echo $response.movements
   
   #Progress Bar
-  1..$seconds |
+  1..$progseconds |
     ForEach-Object { 
-      $percent = $_ * 100 / $seconds; 
-      Write-Progress -Activity "API Lookup countdown" -Status "$($seconds - $_) seconds remaining..." -PercentComplete $percent; 
+      $percent = $_ * 100 / $progseconds; 
+      Write-Progress -Activity "API Lookup countdown" -Status "$($progseconds - $_) seconds remaining..." -PercentComplete $percent; 
       Start-Sleep -Seconds 1
       }
   
   }
 
-while (1) {monitor; sleep $seconds}
+while (1) {monitor; sleep $apiseconds}
 
