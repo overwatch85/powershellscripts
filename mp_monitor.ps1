@@ -4,8 +4,8 @@
 ##Description: Powershell loop to monitor a tracked item via Maltapost's API every 2 minutes for real-time updates to a parcel's status
 
 $tcode = Read-Host -Prompt 'Input your parcel tracking code'
-$apiseconds = 30
-$progseconds = 60
+$apiseconds = 1
+$progseconds = 120
 $Host.PrivateData.ProgressBackgroundColor='Green'
 $Host.PrivateData.ProgressForegroundColor='Black'
 
