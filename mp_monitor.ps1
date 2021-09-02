@@ -24,7 +24,7 @@ Function monitor {
   1..$seconds |
     ForEach-Object { 
       $percent = $_ * 100 / $seconds; 
-      Write-Progress -Activity Break -Status "$($seconds - $_) seconds remaining..." -PercentComplete $percent; 
+      Write-Progress -Activity "API Lookup countdown" -Status "$($seconds - $_) seconds remaining..." -PercentComplete $percent; 
       Start-Sleep -Seconds 1
       }
   
