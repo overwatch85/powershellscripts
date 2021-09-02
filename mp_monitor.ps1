@@ -5,7 +5,8 @@
 
 $tcode = Read-Host -Prompt 'Input your parcel tracking code'
 $seconds = 120
-
+$Host.PrivateData.ProgressBackgroundColor='Green'
+$Host.PrivateData.ProgressForegroundColor='Black'
 
 Function monitor {
   cls
