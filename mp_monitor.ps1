@@ -6,14 +6,19 @@
 ##$tcode = Read-Host -Prompt 'Input your parcel tracking code'
 param($tcode = 0)
 $apiseconds = 1
-$progseconds = 120
 $Host.PrivateData.ProgressBackgroundColor='Green'
 $Host.PrivateData.ProgressForegroundColor='Black'
+$progseconds = 120
 
 Function monitor {
   cls
+echo ""
   echo ""
-  echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
   echo ""
   echo "Retrieving information for tracking code $tcode every 2 minutes"
   echo ""
@@ -22,14 +27,18 @@ Function monitor {
   $response = Invoke-RestMethod -Uri "https://www.maltapost.com/TrackAndTraceApi/v1/trackedItems?barcode=$tcode"
   $response.flag
   echo $response.movements
-  
-  #Progress Bar
+    
+
+#Progress Bar
   1..$progseconds |
     ForEach-Object { 
       $percent = $_ * 100 / $progseconds; 
       Write-Progress -Activity "API Lookup countdown" -Status "$($progseconds - $_) seconds remaining..." -PercentComplete $percent; 
       Start-Sleep -Seconds 1
-      }
+      }  
+
+
+
   
   }
 
